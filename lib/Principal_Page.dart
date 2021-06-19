@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'Criar_Page.dart';
 import 'Variaveis.dart';
 import 'ler_Content.dart';
@@ -7,19 +8,11 @@ class Principal extends StatefulWidget {
   @override
   _PrincipalState createState() => _PrincipalState();
 }
-
+  
 class _PrincipalState extends State<Principal> {
   @override
-    void initState() {
-      Variaveis.save.load();
-      super.initState();
-    }
-  @override
   Widget build(BuildContext context) {
-    // Variaveis.bloconotas.forEach((key, value) {
-    //   Variaveis.listName.add(key);
-    //  Variaveis.listText.add(value);
-    // });
+    Variaveis.save.load();
       print(Variaveis.listName);
       print(Variaveis.listText);
       return MaterialApp(
@@ -30,18 +23,25 @@ class _PrincipalState extends State<Principal> {
               AppBar(
               title: Center(child: Text("App")),
               actions: [
+              IconButton(onPressed: (){
+                 Navigator.pushReplacement(
+                      context, new MaterialPageRoute(
+                        builder: (BuildContext context) {return new Principal();}));
+              }, icon: Icon(Icons.restart_alt)),
                 IconButton(
                   color: Colors.white,
                   icon: Icon(Icons.add), onPressed: () {
                     Navigator.pushReplacement(
                       context, new MaterialPageRoute(
                         builder: (BuildContext context) {return new Criar();}),);}),
-              ],
+                ],
               ),
               SizedBox(height: 15,),
-              Container(width: double.maxFinite, height: 500, child: Ler()),   
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(width: double.maxFinite, height: double.maxFinite, child: Ler()),
+              ),   
               SizedBox(height: 15,),
-              //ElevatedButton(onPressed: (){Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Criar()),);}, child: Text("Criar")),
             ],
           ),
         ),

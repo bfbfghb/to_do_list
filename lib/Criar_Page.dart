@@ -24,10 +24,6 @@ class _CriarState extends State<Criar> {
       Variaveis.bloconotas[nomeBloco] = textBloco.toString();
       print(Variaveis.bloconotas.toString());
       var pontotext = '.';
-
-      // print(nomeBloco);
-      // print(textBloco);
-      //sleep(Duration(seconds: 2));
       for(int i = 0; i < 5; i++){
         ponto+= pontotext;
         setState(() {
@@ -35,10 +31,34 @@ class _CriarState extends State<Criar> {
           esperar = "Aguarde enquanto carregamos tudo para você";
         });
       }
+      Variaveis.listName = [];
+      Variaveis.listText = [];
+      Variaveis.bloconotas.forEach((key, value) {
+        Variaveis.listName.add(key);
+        Variaveis.listText.add(value);
+      });
+      Variaveis.save.save();
       print(ponto);      
       await Future.delayed(Duration(seconds: 1));
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Principal()),); 
     }
+
+    verificar(){
+      if(nomeBloco == null || textBloco == null){
+        setState(() {
+          esperar = "Preencha todos os campos!";
+        });
+      }
+      else if(nomeBloco == null && textBloco == null){
+        setState(() {
+          esperar = "Preencha todos os campos!";
+        });
+      }
+      else{
+        criar();
+      }
+    }
+
     return MaterialApp(
       home: Scaffold(
         body: SingleChildScrollView(
@@ -63,7 +83,7 @@ class _CriarState extends State<Criar> {
                           ),
                         ),
                   SizedBox(height: 50,),
-                  ElevatedButton(onPressed: criar, child: Text("Salvar")),
+                  ElevatedButton(onPressed: verificar, child: Text("Salvar")),
                   SizedBox(height: 15,),
                   Text(esperar),
                   Text(ponto),
@@ -74,4 +94,3 @@ class _CriarState extends State<Criar> {
     );
   }
 }
-
