@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_note_app/PassGenerator/main.dart';
+import 'package:to_do_note_app/PassGenerator.dart';
 import 'Principal_Page.dart';
-import 'Save.dart';
 import 'Variaveis.dart';
 
 class Criar extends StatefulWidget {
