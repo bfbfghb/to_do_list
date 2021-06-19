@@ -5,6 +5,7 @@ import 'Variaveis.dart';
 import 'ler_Content.dart';
 
 class Principal extends StatefulWidget {
+  static final title = "App";
   @override
   _PrincipalState createState() => _PrincipalState();
 }
@@ -12,7 +13,7 @@ class Principal extends StatefulWidget {
 class _PrincipalState extends State<Principal> {
   @override
   Widget build(BuildContext context) {
-    Variaveis.save.load();
+      Variaveis.save.load();
       print(Variaveis.listName);
       print(Variaveis.listText);
       return MaterialApp(
@@ -21,7 +22,7 @@ class _PrincipalState extends State<Principal> {
             child: Column(
             children: [
               AppBar(
-              title: Center(child: Text("App")),
+              title: Text(Principal.title),
               actions: [
               IconButton(onPressed: (){
                  Navigator.pushReplacement(
@@ -30,7 +31,7 @@ class _PrincipalState extends State<Principal> {
               }, icon: Icon(Icons.restart_alt)),
                 IconButton(
                   color: Colors.white,
-                  icon: Icon(Icons.add), onPressed: () {
+                  icon: Icon(Icons.add_box), onPressed: () {
                     Navigator.pushReplacement(
                       context, new MaterialPageRoute(
                         builder: (BuildContext context) {return new Criar();}),);}),

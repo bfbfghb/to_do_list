@@ -21,7 +21,6 @@ class _LerState extends State<Ler> {
     Navigator.pushReplacement(context, new MaterialPageRoute(builder: (BuildContext context) {return new Principal();}),);
   }
     return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
       itemCount: Variaveis.listText.length, itemBuilder: (context, index) {
         return ListTile(title: Container( color: Colors.grey,
           child: Column(

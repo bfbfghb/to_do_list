@@ -44,12 +44,12 @@ class _CriarState extends State<Criar> {
     }
 
     verificar(){
-      if(nomeBloco == null || textBloco == null){
+      if(nomeBloco == null || textBloco == null || textBloco == "" || nomeBloco == ""){
         setState(() {
           esperar = "Preencha todos os campos!";
         });
       }
-      else if(nomeBloco == null && textBloco == null){
+      else if(nomeBloco == null && textBloco == null || nomeBloco == "" && textBloco == ""){
         setState(() {
           esperar = "Preencha todos os campos!";
         });
@@ -61,6 +61,10 @@ class _CriarState extends State<Criar> {
 
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          title: Text(Principal.title),
+          actions: [IconButton(onPressed: (){Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Principal()),); 
+          }, icon: Icon(Icons.close))],),
         body: SingleChildScrollView(
           child: Column(
                 children: [
