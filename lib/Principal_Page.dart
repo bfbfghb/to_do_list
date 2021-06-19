@@ -38,10 +38,7 @@ class _PrincipalState extends State<Principal> {
                 ],
               ),
               SizedBox(height: 15,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(width: double.maxFinite, height: double.maxFinite, child: Ler()),
-              ),   
+              Container(width: double.maxFinite, height: double.maxFinite, child: Ler()),   
               SizedBox(height: 15,),
             ],
           ),

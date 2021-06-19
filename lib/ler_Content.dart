@@ -20,21 +20,25 @@ class _LerState extends State<Ler> {
       Variaveis.save.save();
     Navigator.pushReplacement(context, new MaterialPageRoute(builder: (BuildContext context) {return new Principal();}),);
   }
-    return ListView.builder(
-      itemCount: Variaveis.listText.length, itemBuilder: (context, index) {
-        return ListTile(title: Container( color: Colors.grey,
-          child: Column(
-            children: [
-              SizedBox(height: 25,),
-              Text("${Variaveis.listName[index]}", style: TextStyle(fontSize: 24),),
-              SizedBox(height: 15,),
-              Text("${Variaveis.listText[index]}", style: TextStyle(fontSize: 12),),
-              SizedBox(height: 50,),
-              IconButton(onPressed: (){Variaveis.bloconotas.remove(Variaveis.listName[index]);update();}, icon: Icon(Icons.delete_forever))
-            ],
-          ),
-        ),);
-      },
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView.builder(
+        //physics: ClampingScrollPhysics(),
+        itemCount: Variaveis.listText.length, itemBuilder: (context, index) {
+          return ListTile(title: Container( color: Colors.grey,
+            child: Column(
+              children: [
+                SizedBox(height: 25,),
+                Text("${Variaveis.listName[index]}", style: TextStyle(fontSize: 24),),
+                SizedBox(height: 15,),
+                Text("${Variaveis.listText[index]}", style: TextStyle(fontSize: 12),),
+                SizedBox(height: 50,),
+                IconButton(onPressed: (){Variaveis.bloconotas.remove(Variaveis.listName[index]);update();}, icon: Icon(Icons.delete_forever))
+              ],
+            ),
+          ),);
+        },
+      ),
     );
   }
 }

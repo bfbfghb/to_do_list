@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_note_app/PassGenerator/main.dart';
 import 'Principal_Page.dart';
 import 'Save.dart';
 import 'Variaveis.dart';
@@ -16,11 +17,10 @@ class _CriarState extends State<Criar> {
   var ponto = "";
 
   var esperar = '';
-
+  var password = "";
   @override
   Widget build(BuildContext context) {
-
-     criar() async{
+    criar() async{
       Variaveis.bloconotas[nomeBloco] = textBloco.toString();
       print(Variaveis.bloconotas.toString());
       var pontotext = '.';
@@ -58,41 +58,48 @@ class _CriarState extends State<Criar> {
         criar();
       }
     }
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text(Principal.title),
           actions: [IconButton(onPressed: (){Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Principal()),); 
           }, icon: Icon(Icons.close))],),
-        body: SingleChildScrollView(
-          child: Column(
-                children: [
-                  SizedBox(height: 50,),
-                  Center(child: Text("Nome")),
-                  Container(
-                    child: TextField(textAlign: TextAlign.center,
-                    onSubmitted: (String valor){nomeBloco = valor;},
-                    onChanged: (String valor){nomeBloco = valor;},
-                    ),
+        body: Column(
+              children: [
+                SizedBox(height: 50,),
+                Center(child: Text("Nome")),
+                Container(
+                  child: TextField(textAlign: TextAlign.center,
+                  onSubmitted: (String valor){nomeBloco = valor;},
+                  onChanged: (String valor){nomeBloco = valor;},
                   ),
-                  SizedBox(height: 15,),
-                  Center(child: Text("Adicione")),
-                  Container(
-                    child: TextField(
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 20),
-                            onSubmitted: (String value){textBloco = value;},
-                            onChanged: (String value){textBloco = value;},
-                          ),
-                        ),
-                  SizedBox(height: 50,),
-                  ElevatedButton(onPressed: verificar, child: Text("Salvar")),
-                  SizedBox(height: 15,),
-                  Text(esperar),
-                  Text(ponto),
-                ],
-          ),
+                ),
+                SizedBox(height: 15,),
+                Center(child: Text("Adicione")),
+                Container(
+                  child: Column(
+                    children: [
+                      TextField(
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 20),
+                              onSubmitted: (String valor2){textBloco = valor2;},
+                              onChanged: (String valor2){textBloco = valor2;},
+                            ),
+                        Text(password),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 50,),
+                ElevatedButton(onPressed: verificar, child: Text("Salvar")),
+                SizedBox(height: 15,),
+                ElevatedButton(onPressed: (){PassGenerator passGenerator = new PassGenerator();
+                passGenerator.createPass(); textBloco = PassGenerator.pass; setState((){password = "PassWord: $textBloco";});print(PassGenerator.pass); }, 
+                child: Column(children: [
+                  Text("Pass Generator"),
+                  ])),
+                Text(esperar),
+                Text(ponto),
+              ],
         ),
       ),
     );
